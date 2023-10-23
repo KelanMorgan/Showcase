@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ public class AddToCart extends JFrame{
 	private JButton logOut;
 	private JButton addToCart;
 	private JButton removeFromCart;
+	private JButton viewInvoice;
 	
 	private JTextField quantityText;
 	private JLabel quantityLabel;
@@ -53,7 +55,7 @@ public class AddToCart extends JFrame{
 		setVisible(true);
 		setLocation(400,400);
 		
-		//initalize variables
+		//Initialize variables
 		grid = new GridBagConstraints();
 		root = new JPanel(new GridBagLayout());
 		buttons = new JPanel(new GridBagLayout());
@@ -116,6 +118,14 @@ public class AddToCart extends JFrame{
 		grid.anchor = GridBagConstraints.WEST;
 		grid.fill = GridBagConstraints.NONE;
 		root.add(logOut, grid);
+		
+		//Invoice button
+		viewInvoice = new JButton("View Invoice");
+        grid.gridx = 2;
+        grid.gridy = 2;
+        grid.anchor = GridBagConstraints.EAST;
+        grid.fill = GridBagConstraints.NONE;
+        root.add(viewInvoice, grid);
 	    
 	    try {
 	        // make a connection to the database
@@ -194,6 +204,7 @@ public class AddToCart extends JFrame{
 		
 		add(root);
 		
+		// action listener to the "log out" button
 		logOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginGui login = new LoginGui();
@@ -202,6 +213,7 @@ public class AddToCart extends JFrame{
 			}
 		});
 		
+		// action listener to the "add to cart" button
 		addToCart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 		        try {
@@ -239,6 +251,7 @@ public class AddToCart extends JFrame{
 			}
 		});
 		
+		// action listener to the "remove from cart" button
 		removeFromCart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -280,5 +293,13 @@ public class AddToCart extends JFrame{
 			    }
 			}
 		});
+		
+        // action listener to the "View Invoice" button
+        viewInvoice.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	InvoiceWindow invoiceWindow = new InvoiceWindow(userID);
+                invoiceWindow.setVisible(true);
+            }
+        });
 	}
 }
