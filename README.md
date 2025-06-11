@@ -4,7 +4,7 @@
 2. launch EASy68K and open `Endless_Runner.X68`
 3. press play on the game and execute
 
-![play](Images/play_button.png)
+![play](Endless_Runner/Images/play_button.png)
 
 4. press play again in the new popup
 5. try to get as far as you can!
